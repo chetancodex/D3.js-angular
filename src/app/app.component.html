@@ -1,0 +1,17 @@
+<app-nav></app-nav>
+<div class="contain">
+  <app-filter
+    (selectedValuesChange)="handleSelectedValuesChange($event)"
+  ></app-filter>
+  <app-barchartsector
+    [selectedYear]="selectedValues.year"
+    [selectedTopic]="selectedValues.topic"
+    [selectedSector] ="selectedValues.sector"
+    [selectedRegion] ="selectedValues.region"
+    [selectedPestle] ="selectedValues.pestle"
+    [selectedSource] ="selectedValues.sources"
+    [selectedSwot] = "selectedValues.swot"
+    [selectedCountry] ="selectedValues.country"
+  ></app-barchartsector>
+  <button (click)="resetMethod()">Reset Filters</button>
+</div>

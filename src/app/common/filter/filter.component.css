@@ -1,0 +1,12 @@
+.filters {
+    width: max-content;
+    display : grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(2,1fr);
+    align-items: center;
+    gap: 1rem
+
+}
+.form-select {
+    width : 10rem
+}

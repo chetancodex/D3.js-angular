@@ -1,0 +1,66 @@
+<div class="filters">
+  <div class="filter-item">
+    <label for="yearSelect">Year:</label>
+    <select id="yearSelect" class="form-select" aria-label="Year select" [(ngModel)]="selectedYear" (ngModelChange)="emitSelectedValues()">
+      <option selected disabled>Year</option>
+      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="topicSelect">Topic:</label>
+    <select id="topicSelect" class="form-select" aria-label="Topic select" [(ngModel)]="selectedTopic" (ngModelChange)="emitSelectedValues()">
+      <option selected disabled>Topic</option>
+      <option *ngFor="let topic of topics" [value]="topic">{{ topic }}</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="sectorSelect">Sector:</label>
+    <select id="sectorSelect" class="form-select" aria-label="Sector select" [(ngModel)]="selectedSector" (ngModelChange)="emitSelectedValues()">
+      <option selected disabled>Sector</option>
+      <option *ngFor="let sector of sectors" [value]="sector">{{ sector }}</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="regionSelect">Region:</label>
+    <select id="regionSelect" class="form-select" aria-label="Region select" [(ngModel)]="selectedRegion" (ngModelChange)="emitSelectedValues()">
+      <option selected disabled>Region</option>
+      <option *ngFor="let region of regions" [value]="region">{{ region }}</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="pestlesSelect">Pestle:</label>
+    <select id="pestlesSelect" class="form-select" aria-label="Pestle select" [(ngModel)]="selectedPestle" (ngModelChange)="emitSelectedValues()">
+      <option selected disabled>Pestle</option>
+      <option *ngFor="let pestle of pestles" [value]="pestle">{{ pestle }}</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="sourcesSelect">Source:</label>
+    <select id="sourcesSelect" class="form-select" aria-label="Source select" [(ngModel)]="selectedSource" (ngModelChange)="emitSelectedValues()">
+      <option selected disabled>Source</option>
+      <option *ngFor="let source of sources" [value]="source">{{ source }}</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="swotsSelect">Swot:</label>
+    <select id="swotsSelect" class="form-select" aria-label="Swot select" [(ngModel)]="selectedSwot" (ngModelChange)="emitSelectedValues()">
+      <option selected disabled>Swot</option>
+      <option *ngFor="let swot of swots" [value]="swot">{{ swot }}</option>
+    </select>
+  </div>
+
+  <div class="filter-item">
+    <label for="countrySelect">Country:</label>
+    <select id="countrySelect" class="form-select" aria-label="Country select" [(ngModel)]="selectedCountry" (ngModelChange)="emitSelectedValues()">
+      <option selected disabled>Country</option>
+      <option *ngFor="let country of countrys" [value]="country">{{ country }}</option>
+    </select>
+  </div>
+
+</div>

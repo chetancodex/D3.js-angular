@@ -1,0 +1,20 @@
+app-nav {
+  position: fixed !important;
+  left: 0 !important;
+  display: inline-flex !important;
+}
+.contain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-right : 0;
+    margin-top: 0;
+    margin-left: 10rem;
+}
+app-filter {
+    margin : 2rem;
+    position: absolute;
+    left : 1;
+    top : 0;
+}
