@@ -1,6 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { BarchartsectorComponent } from 'src/app/barchartsector/barchartsector.component';
-import { Data } from 'src/app/interfaces/data.interface';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { DataService } from 'src/app/service/data.api.service';
 
 @Component({
@@ -8,26 +6,20 @@ import { DataService } from 'src/app/service/data.api.service';
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.css'],
 })
-export class FilterComponent {
+export class FilterComponent implements OnChanges {
   @Output() selectedValuesChange = new EventEmitter<any>();
-  selectedYear: string = '';
-  selectedTopic: string = '';
-  selectedSector: string = '';
-  selectedRegion: string = '';
-  selectedPestle: string = '';
-  selectedSource: string = '';
-  selectedSwot: string = '';
-  selectedCountry: string = '';
+  @Input() reset = false;
 
-  constructor( private dataService : DataService )  {
-  this.dataService.globalData.subscribe((res) => {
-    this.Data = res;
-    this.initializeDataArrays();
-  });
+  selectedYear = '';
+  selectedTopic = '';
+  selectedSector = '';
+  selectedRegion = '';
+  selectedPestle = '';
+  selectedSource = '';
+  selectedSwot = '';
+  selectedCountry = '';
 
-
-  }
-  Data: any  = [] 
+  Data: any = [];
   years: string[] = [];
   topics: string[] = [];
   sectors: string[] = [];
@@ -35,23 +27,40 @@ export class FilterComponent {
   pestles: string[] = [];
   sources: string[] = [];
   swots: string[] = [];
-  countrys: string[] = [];
+  countries: string[] = [];
+
+  constructor(private dataService: DataService) {
+    this.dataService.globalData.subscribe((res) => {
+      this.Data = res;
+      this.initializeDataArrays();
+    });
+  }
+
+  ngOnChanges(change : SimpleChanges) {
+    if (change['reset']) {
+      this.resetSelectedValues();
+      this.reset = !this.reset;
+    }
+  }
+
+  ngOnInit() {
+    this.initializeDataArrays();
+  }
+
   emitSelectedValues() {
     const selectedValues = {
       year: this.selectedYear,
       topic: this.selectedTopic,
-      sector : this.selectedSector,
-      region : this.selectedRegion,
-      pestles : this.selectedPestle,
-      sources : this.selectedSource,
-      swot : this.selectedSwot,
-      country : this.selectedCountry,
+      sector: this.selectedSector,
+      region: this.selectedRegion,
+      pestle: this.selectedPestle,
+      source: this.selectedSource,
+      swot: this.selectedSwot,
+      country: this.selectedCountry,
     };
     this.selectedValuesChange.emit(selectedValues);
   }
 
-
-  
   initializeDataArrays() {
     if (this.Data && this.Data.data) {
       const actualData = this.Data.data;
@@ -62,37 +71,32 @@ export class FilterComponent {
       this.pestles = this.getUniqueValues('pestle', actualData);
       this.sources = this.getUniqueValues('source', actualData);
       this.swots = this.getUniqueValues('swot', actualData);
-      this.countrys = this.getUniqueValues('country', actualData);
+      this.countries = this.getUniqueValues('country', actualData);
     }
   }
 
-
-  ngOnInit()  {
-     this.years = this.getUniqueValues(`end_year`, this.Data);
-      this.topics = this.getUniqueValues('topic', this.Data);
-      this.sectors = this.getUniqueValues('sector', this.Data);
-      this.regions = this.getUniqueValues('region', this.Data);
-      this.pestles = this.getUniqueValues('pestle', this.Data);
-      this.sources = this.getUniqueValues('source', this.Data);
-      this.swots = this.getUniqueValues('swot', this.Data);
-      this.countrys = this.getUniqueValues('country', this.Data);
+  resetSelectedValues() {
+    this.selectedYear = '';
+    this.selectedTopic = '';
+    this.selectedSector = '';
+    this.selectedRegion = '';
+    this.selectedPestle = '';
+    this.selectedSource = '';
+    this.selectedSwot = '';
+    this.selectedCountry = '';
   }
- 
 
-  getUniqueValues(property: string, data: any[]): any[] {
+  getUniqueValues(property: string, data: any[]): string[] {
     const values: string[] = [];
     if (!Array.isArray(data)) {
       console.error('data is not an array:', data);
       return values;
     }
     data.filter((item) => {
-      if (item.hasOwnProperty(property) && !values.includes(item[property])&& item[property] !== "") {
+      if (item.hasOwnProperty(property) && !values.includes(item[property]) && item[property] !== "") {
         values.push(item[property]);
       }
     });
     return values;
   }
- 
-  
-
 }

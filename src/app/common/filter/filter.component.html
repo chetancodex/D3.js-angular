@@ -59,7 +59,7 @@
     <label for="countrySelect">Country:</label>
     <select id="countrySelect" class="form-select" aria-label="Country select" [(ngModel)]="selectedCountry" (ngModelChange)="emitSelectedValues()">
       <option selected disabled>Country</option>
-      <option *ngFor="let country of countrys" [value]="country">{{ country }}</option>
+      <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
     </select>
   </div>
 

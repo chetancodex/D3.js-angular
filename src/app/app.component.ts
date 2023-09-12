@@ -10,9 +10,8 @@ export class AppComponent {
   selectedValues: any = {};
   reset : boolean = false
   resetMethod() {
-    console.log('here')
     this.selectedValues = {};
-    this.reset = true
+    this.reset = !this.reset
   }
   
   handleSelectedValuesChange(selectedValues: any) {

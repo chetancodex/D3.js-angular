@@ -2,7 +2,7 @@
 <div class="contain">
   <app-filter
     (selectedValuesChange)="handleSelectedValuesChange($event)"
-  ></app-filter>
+  [reset] = "reset"></app-filter>
   <app-barchartsector
     [selectedYear]="selectedValues.year"
     [selectedTopic]="selectedValues.topic"
@@ -12,6 +12,8 @@
     [selectedSource] ="selectedValues.sources"
     [selectedSwot] = "selectedValues.swot"
     [selectedCountry] ="selectedValues.country"
+    [reset] = "reset"
   ></app-barchartsector>
-  <button (click)="resetMethod()">Reset Filters</button>
+
+  <button class="btn abs btn-danger" (click)="resetMethod()">Reset Filters</button>
 </div>
